@@ -2,13 +2,13 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { User } from "./entity/User"
 import { Post } from "./entity/Post"
-import * as dotenv from "dotenv"
+import config from 'config';
 
-require('dotenv').config({ path: __dirname + '/.env'})
+const MONGO_URI =  config.get("dbUri") as string;
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
-    url: process.env.MONGO_URI,
+    url: MONGO_URI,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     synchronize: true,
