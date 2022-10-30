@@ -1,14 +1,14 @@
-import "reflect-metadata"
-import { DataSource } from "typeorm"
-import { User } from "./entity/User"
-import { Post } from "./entity/Post"
-import config from 'config';
+import "reflect-metadata";
+import * as config from "config";
+import { DataSource } from "typeorm";
+import { User } from "./entity/User";
+import { Post } from "./entity/Post";
 
-const MONGO_URI =  config.get("dbUri") as string;
+const mongo_uri = config.get("dbUri") as string;
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
-    url: MONGO_URI,
+    url: mongo_uri,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     synchronize: true,

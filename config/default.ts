@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv"
-require('dotenv').config({ path: __dirname + '../.env'})
+require('dotenv').config({ path: __dirname + '/../.env'})
 
 export default {
 	port: process.env.PORT,

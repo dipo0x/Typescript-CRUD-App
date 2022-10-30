@@ -1,8 +1,7 @@
 import express from 'express';
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
-import config from 'config';
-import connect from "./db/connect"
+import * as config from "config";
+import log from "./logger";
+import connect from "./db/connect";
 
 const port = config.get("port") as number;
 const host = config.get("host") as string;
