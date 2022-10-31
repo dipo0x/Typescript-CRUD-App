@@ -6,6 +6,6 @@ export const createUserSchema = object({
 		password: string()
 			.required("Password is required")
 			.min(6, "Password is too short - should be 6 characters minimum.")
-			.matches(/^[a-zA-Z0-9_.-]*$/, "Password can only contain latin letters."),
+			.matches(/^[a-zA-Z0-9_.-]*$/, "Password can only contain latin letters.")
 	}),
 });

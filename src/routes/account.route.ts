@@ -4,5 +4,5 @@ import { createUserSchema } from '../schema/user.schema';
 import validateRequest from '../middleware/validateRequest';
 
 export default function (app: Express){
-	app.post("/api/users", validateRequest(createUserSchema), createUserHandler);
+	app.post("/signup", validateRequest(createUserSchema), createUserHandler);
 }
