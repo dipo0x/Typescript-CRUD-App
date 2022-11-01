@@ -4,7 +4,7 @@ function createConnection() {
 	AppDataSource.initialize().then(async () => {
 		console.log('Database connected')
 
-    }).catch(error => console.log("an error occured"))
+    }).catch(error => console.log("Database connection failed"))
 }
 
 export default createConnection;

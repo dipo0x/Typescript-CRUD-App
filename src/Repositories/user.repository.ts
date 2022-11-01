@@ -4,9 +4,9 @@ import log from "../logger";
 const userRepo = AppDataSource.getRepository(User);
 
 export async function findUser (body) {
+
   const { username } = body
   let isTrue = false;
-  let userID;
 	const user = await userRepo.findOne({ where: { username: username } }).catch((err) => { console.log(err )})
   if(user){
     isTrue = true
@@ -28,7 +28,7 @@ export async function addUser (body) {
     await userRepo.save(user).catch((err) => {
       console.log('Error:', err)
     })
-    console.log("New User Saved", user);
+    return user
   }
   catch(err){
     log.error(err)
