@@ -6,7 +6,7 @@ import { User } from "../entity/User"
 import { findUser, addUser } from '../repositories/user.repository'
 
 export async function createUser(body) {
-	const { userID, userExist } = await findUser(body.email)
+	const { userExist } = await findUser(body)
     if(userExist == true){
     	throw new Error("Email exists");
     }
