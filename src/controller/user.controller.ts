@@ -9,6 +9,6 @@ export async function createUserHandler(req: Request, res: Response) {
 		return res.send(omit(user));
 	} catch(e){
 		log.error(e);
-		return res.status(409).send(e);
+		return res.status(409).send(e.message);
 	}
 }
