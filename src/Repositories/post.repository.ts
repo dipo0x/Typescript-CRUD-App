@@ -41,3 +41,14 @@ export async function addPost (body) {
     log.error(err)
   }
 }
+
+export async function allPosts () {
+  try{
+    const postRepo = AppDataSource.getRepository(Post);
+    const post = await postRepo.find({})
+    return post
+  }
+  catch(err){
+    log.error(err)
+  }
+}
