@@ -62,6 +62,7 @@ export async function findPostByID(postID) {
     isTrue = true
   }
   return{
+    post,
     postExist: isTrue == true,
   }
 }

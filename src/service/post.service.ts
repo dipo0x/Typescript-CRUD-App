@@ -28,6 +28,17 @@ export async function editPost(body, params) {
         const post = await editPost(body, postId)   
     }
     else{
-        throw new Error("You have posted this already");
+        throw new Error("Post does not exist");
+    }
+}
+
+export async function getPost(postId) {
+    const { postExist } = await findPostById(postId)
+    if(postExist == true){
+        const { post } = await findPostById(postId)  
+        return post 
+    }
+    else{
+        throw new Error("Post does not exist");
     }
 }
