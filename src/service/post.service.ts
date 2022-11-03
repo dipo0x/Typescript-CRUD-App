@@ -3,7 +3,7 @@ import { Request } from "express";
 import { AppDataSource } from "../data-source"
 import { getRepository } from "typeorm"
 import { Post } from "../entity/Post"
-import { findPost, addPost, allPosts } from '../repositories/post.repository'
+import { findPostByBody, findPostById, addPost, allPosts, editPost } from '../repositories/post.repository'
 
 export async function createPost(body) {
 	const { postExist } = await findPost(body)
@@ -19,4 +19,15 @@ export async function createPost(body) {
 export async function allPost() {
 	const post = await allPosts()
     return post
+}
+
+export async function editPost(body, params) {
+    const postId = params.id
+    const { postExist } = await findPostById(postID)
+    if(postExist == true){
+        const post = await editPost(body, postId)   
+    }
+    else{
+        throw new Error("You have posted this already");
+    }
 }

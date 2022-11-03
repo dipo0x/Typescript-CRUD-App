@@ -12,7 +12,6 @@ export async function findUser (body) {
     isTrue = true
   }
   return{
-    userID,
     userExist: isTrue == true,
   }
 }

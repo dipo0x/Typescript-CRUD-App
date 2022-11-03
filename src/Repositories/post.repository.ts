@@ -5,7 +5,7 @@ import log from "../logger";
 const postRepo = AppDataSource.getRepository(Post);
 const userRepo = AppDataSource.getRepository(User);
 
-export async function findPost(body) {
+export async function findPostByBody(body) {
 
   const { username, title, content } = body
   let isTrue = false;
@@ -25,7 +25,7 @@ export async function addPost (body) {
   const { username, title, content } = body
   try{
     const postRepo = AppDataSource.getRepository(Post);
-    const postUser = await userRepo.findOne({ where: { username: username }
+    const postUser = await userRepo.findOne({ where: { username: username }})
 
     const post = postCreate.create({ 
       user: username, 
@@ -51,4 +51,26 @@ export async function allPosts () {
   catch(err){
     log.error(err)
   }
+}
+
+export async function findPostByID(postID) {
+  let isTrue = false;
+  const postRepo = AppDataSource.getRepository(Post);
+
+  const post = await postRepo.findOne({postID}).catch((err) => { console.log(err )})
+  if(post){
+    isTrue = true
+  }
+  return{
+    postExist: isTrue == true,
+  }
+}
+
+export async function editPost(body, postID) {
+  const postRepo = AppDataSource.getRepository(Post);
+
+  const post = await postRepo.findOne({postID}).catch((err) => { console.log(err) })
+  postRepo.merge(post, body)
+  const result = postRepo.save(post);
+  return res.json(result)
 }

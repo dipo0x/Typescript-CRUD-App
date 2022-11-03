@@ -15,4 +15,5 @@ export class User {
 
     @OneToMany((type) => Post, (post) => post.user)
     posts: Promise<Post[]>;
+    
 }

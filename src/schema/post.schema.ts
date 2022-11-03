@@ -4,9 +4,9 @@ export const createUserSchema = object({
 	body: object({
 		username: string().required('Username is required'),
 		title: string()
-		.required('Title is required'),
-		.min(3, "Ttile is too short - should be 3 characters minimum.")
-		.max(45, "Title is too long - should be 6 characters maximum.")
+			.required('Title is required'),
+			.min(3, "Ttile is too short - should be 3 characters minimum.")
+			.max(45, "Title is too long - should be 6 characters maximum.")
 
 		content: string()
 			.required("Content is required")
