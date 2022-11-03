@@ -3,7 +3,7 @@ import { Request } from "express";
 import { AppDataSource } from "../data-source"
 import { getRepository } from "typeorm"
 import { Post } from "../entity/Post"
-import { findPostByBody, findPostById, addPost, allPosts, editPost } from '../repositories/post.repository'
+import { findPostByBody, findPostById, addPost, allPosts, editPost, deletePostById } from '../repositories/post.repository'
 
 export async function createPost(body) {
 	const { postExist } = await findPost(body)
@@ -36,7 +36,18 @@ export async function getPost(postId) {
     const { postExist } = await findPostById(postId)
     if(postExist == true){
         const { post } = await findPostById(postId)  
-        return post 
+        return post
+    }
+    else{
+        throw new Error("Post does not exist");
+    }
+}
+
+export async function deletePost(postId) {
+    const { postExist } = await findPostById(postId)
+    if(postExist == true){
+        const { post } = await deletePostById(postId)  
+        return post
     }
     else{
         throw new Error("Post does not exist");

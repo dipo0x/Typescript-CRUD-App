@@ -68,10 +68,15 @@ export async function findPostByID(postID) {
 }
 
 export async function editPost(body, postID) {
-  const postRepo = AppDataSource.getRepository(Post);
 
+  const postRepo = AppDataSource.getRepository(Post);
   const post = await postRepo.findOne({postID}).catch((err) => { console.log(err) })
   postRepo.merge(post, body)
   const result = postRepo.save(post);
   return res.json(result)
+}
+
+export async function deletePostById(postID) {
+  const post = await getRepository(Post).delete(postID);
+  return res.json(post)
 }
