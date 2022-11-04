@@ -3,6 +3,7 @@ import * as config from "config";
 import log from "./logger";
 import connect from "./db/connect";
 import accountRoute from "./routes/account.route"
+import postRoute from "./routes/post.route"
 
 const port = config.get("port") as number;
 const host = config.get("host") as string;
@@ -16,4 +17,5 @@ app.listen(port, host, () => {
     log.info(`Server listening on port ${port}`);
     connect()
     accountRoute(app)
+    postRoute(app)
 });

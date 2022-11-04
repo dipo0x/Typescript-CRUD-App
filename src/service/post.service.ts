@@ -6,7 +6,7 @@ import { Post } from "../entity/Post"
 import { findPostByBody, findPostById, addPost, allPosts, editPost, deletePostById } from '../repositories/post.repository'
 
 export async function createPost(body) {
-	const { postExist } = await findPost(body)
+	const { postExist } = await findPostByBody(body)
     if(postExist == true){
     	throw new Error("You have posted this already");
     }
@@ -21,9 +21,9 @@ export async function allPost() {
     return post
 }
 
-export async function editPost(body, params) {
+export async function editPostService(body, params) {
     const postId = params.id
-    const { postExist } = await findPostById(postID)
+    const { postExist } = await findPostById(postId)
     if(postExist == true){
         const post = await editPost(body, postId)   
     }

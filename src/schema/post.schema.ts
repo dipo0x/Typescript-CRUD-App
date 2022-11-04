@@ -1,6 +1,6 @@
 import { object, string, ref } from "yup";
 
-export const createUserSchema = object({
+export const createPostSchema = object({
 	body: object({
 		username: string().required('Username is required'),
 		title: string()
